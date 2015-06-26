@@ -1,5 +1,7 @@
 <head>
   <title>meteortest1</title>
+  <link rel="csgo-pic" sizes="600x300" type="image/png" href="/CSGO-logo.png">
+  <link rel="icon" sizes="16x16 32x32" href="/csgo-logo2.png">
 </head>
 
 <template name="GlobalView">
@@ -52,6 +54,7 @@
   <div class="page-header">
     <h1>Welcome {{currentUser.username}}</h1>
   </div>
+  <img src="/CSGO-logo.png" class="img-rounded">
 </template>
 
 <template name="StatisticsView">
@@ -60,16 +63,64 @@
     <h1>Statistics</h1>
   </div>
 
-  <div class="input-group input-group-sm" id="input1">
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Add
+</button>
 
-      <input type="text" class="form-control" placeholder="Map" id="map">
-      <input type="text" class="form-control" placeholder="Score (X-Y)" id="score">
-      <input type="text" class="form-control" placeholder="Kills" id="kills">
-      <input type="text" class="form-control" placeholder="Assists" id="assists">
-      <input type="text" class="form-control" placeholder="Deaths" id="deaths">
-      <button class="btn btn-default" type="button" id="submitButton">Submit</button>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add a game</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group input-group-sm" id="input1">
 
+          <select class="form-control" id="map">
+            <option>Dust2</option>
+            <option>Mirage</option>
+            <option>Inferno</option>
+            <option>Cache</option>
+            <option>Overpass</option>
+          </select>
+          <!--<input type="text" class="form-control" placeholder="Map" id="map"> -->
+          <input type="text" class="form-control" placeholder="Score (X-Y)" id="score">
+          <div class="row">
+            <div class="col-xs-4">
+              <input type="text" class="form-control" placeholder="Kills" id="kills">
+            </div>
+            <div class="col-xs-4">
+              <input type="text" class="form-control" placeholder="Assists" id="assists">
+            </div>
+            <div class="col-xs-4">
+              <input type="text" class="form-control" placeholder="Deaths" id="deaths">
+            </div>
+          </div>
+
+
+          <input type="text" class="form-control" placeholder="Mvp-stars" id="mvp">
+
+          <select class="form-control" id="rank">
+            <option>GE</option>
+            <option>SMFC</option>
+            <option>LEM</option>
+            <option>LE</option>
+            <option>DMG</option>
+          </select>
+          <!-- <input type="text" class="form-control" placeholder="Rank" id="rank"> -->
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="submitButton">Submit</button>
+      </div>
+    </div>
   </div>
+</div>
+
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">Recent games</h3>
@@ -77,7 +128,7 @@
     <div class="panel-body">
       {{> stats}}
     </div>
-    <table class="table table-hover table-striped table-users">
+    <table class="table table-hover table-striped table-users table-responsive">
       <thead>
         <tr>
 
@@ -86,6 +137,10 @@
           <th data-field="kills">Kills</th>
           <th data-field="assists">Assists</th>
           <th data-field="deaths">Deaths</th>
+          <th data-field="kpr">KPR</th>
+          <th data-field="mvp">Mvp</th>
+          <th data-field="rank">Rank</th>
+          <th data-field="rating">Rating</th>
           <th data-field="remove"></th>
 
         </tr>
@@ -107,6 +162,10 @@
     <td>{{kills}}</td>
     <td>{{assists}}</td>
     <td>{{deaths}}</td>
+    <td>{{kpr}}</td>
+    <td>{{mvp}}</td>
+    <td>{{rank}}</td>
+    <td>{{rating}}</td>
     <td><button type="button" class="close"><span>&times;</span></button></td>
   </tr>
 </template>
@@ -114,4 +173,8 @@
 <template name="stats">
     <p>KDR = {{kd}}</p>
     <p>Win% = {{winp}}</p>
+    <p>Mvp/game = {{mvpStars}}</p>
+    <p>Rounds/game = {{rounds}}</p>
+    <p>KPR = {{kpr}}</p>
+    <p>Average rating = {{averageRating}}</p>
 </template>

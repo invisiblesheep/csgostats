@@ -11,3 +11,9 @@ twbs:bootstrap
 ian:accounts-ui-bootstrap-3
 accounts-password
 iron:router
+meteorhacks:npm
+
+
+npm-container
+mrt:accounts-steam
+mrt:steam

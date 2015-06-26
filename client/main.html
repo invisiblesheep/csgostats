@@ -11,10 +11,6 @@
 
 <template name="MainNavigation">
 
-  <!--  <div class="page-header">
-      <h1>Hello template <small>subtext</small></h1>
-    </div> -->
-
   <nav class="navbar navbar-default navbar-static-top">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -29,7 +25,6 @@
 
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-        <!--  <li class="active"><a href="#">Home</a></li> -->
         {{#if currentUser}}
           <li><a href="/">Home <span class="sr-only">(current)</span></a></li>
           <li><a href="/stats">Statistics</a></li>
@@ -54,9 +49,69 @@
 </template>
 
 <template name="HomeView">
-      <h1>Welcome</h1>
+  <div class="page-header">
+    <h1>Welcome {{currentUser.username}}</h1>
+  </div>
 </template>
 
 <template name="StatisticsView">
+  {{#if currentUser}}
+  <div class="page-header">
     <h1>Statistics</h1>
+  </div>
+
+  <div class="input-group input-group-sm" id="input1">
+
+      <input type="text" class="form-control" placeholder="Map" id="map">
+      <input type="text" class="form-control" placeholder="Score (X-Y)" id="score">
+      <input type="text" class="form-control" placeholder="Kills" id="kills">
+      <input type="text" class="form-control" placeholder="Assists" id="assists">
+      <input type="text" class="form-control" placeholder="Deaths" id="deaths">
+      <button class="btn btn-default" type="button" id="submitButton">Submit</button>
+
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Recent games</h3>
+    </div>
+    <div class="panel-body">
+      {{> stats}}
+    </div>
+    <table class="table table-hover table-striped table-users">
+      <thead>
+        <tr>
+
+          <th data-field="map">Map</th>
+          <th data-field="score">Score</th>
+          <th data-field="kills">Kills</th>
+          <th data-field="assists">Assists</th>
+          <th data-field="deaths">Deaths</th>
+          <th data-field="remove"></th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {{#each games}}
+          {{> game}}
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  {{/if}}
+</template>
+
+<template name="game">
+  <tr>
+    <td>{{map}}</td>
+    <td>{{score}}</td>
+    <td>{{kills}}</td>
+    <td>{{assists}}</td>
+    <td>{{deaths}}</td>
+    <td><button type="button" class="close"><span>&times;</span></button></td>
+  </tr>
+</template>
+
+<template name="stats">
+    <p>KDR = {{kd}}</p>
+    <p>Win% = {{winp}}</p>
 </template>

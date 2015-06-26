@@ -1,0 +1,45 @@
+{
+  "dependencies": {
+    "passport-steam": {
+      "version": "0.1.5",
+      "dependencies": {
+        "pkginfo": {
+          "version": "0.3.0"
+        },
+        "passport-openid": {
+          "version": "0.3.1",
+          "dependencies": {
+            "pkginfo": {
+              "version": "0.2.3"
+            },
+            "passport": {
+              "version": "0.1.18",
+              "dependencies": {
+                "pause": {
+                  "version": "0.0.1"
+                }
+              }
+            },
+            "openid": {
+              "version": "0.5.13"
+            }
+          }
+        },
+        "steam-web": {
+          "version": "0.2.1"
+        }
+      }
+    },
+    "qs": {
+      "version": "3.1.0"
+    },
+    "steam-webapi": {
+      "version": "0.6.5",
+      "dependencies": {
+        "qs": {
+          "version": "1.2.2"
+        }
+      }
+    }
+  }
+}
